@@ -147,8 +147,12 @@ def main():
             return merged_df
 
         # Retreiving LR model file
-        filename = 'model1.sav'
-        model1 = pickle.load(open(filename, 'rb'))
+        try:
+            with open('model1.sav', 'rb') as file:
+                model1 = pickle.load(file)
+        except FileNotFoundError:
+            st.error("Failed to load the model file. Make sure it exists in the current directory.")
+
 
         # Applying OHE onto user input (predictors)
         user_input = [[ town, floor_range, full_flat_type, primary_school, floor_area_sqm, 
