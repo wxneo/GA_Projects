@@ -1,6 +1,6 @@
 streamlit
 pandas
-sklearn
+scikit-learn
 numpy
 folium
 streamlit_folium
