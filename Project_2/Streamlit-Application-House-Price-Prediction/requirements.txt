@@ -5,8 +5,8 @@ numpy
 folium
 streamlit_folium
 plotly
-numpy
 patsy
 yellowbrick
 pickle
-matplotlib.pyplot
+matplotlib
+seaborn
