@@ -1,12 +1,7 @@
 # Import Libraries
 import streamlit as st
-
-# Import Libraries
-import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import folium
 from streamlit_folium import folium_static
 import plotly.express as px
@@ -50,7 +45,7 @@ def get_data(filename):
 
     return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
 
-df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data('C:/Users/jinji/Documents/GitHub/GA_Projects/Project-2-House-Price-Prediction/datasets/housing_df.csv')
+df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data('housing_df.csv')
 
 ## Feature 2A: EDA - Numerical predictor scatter plot ---------------------------------------------
 

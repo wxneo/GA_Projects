@@ -8,5 +8,3 @@ plotly
 patsy
 yellowbrick
 pickle
-matplotlib
-seaborn

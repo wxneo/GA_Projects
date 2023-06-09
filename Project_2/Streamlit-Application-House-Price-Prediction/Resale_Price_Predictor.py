@@ -2,8 +2,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import folium
 
 from streamlit_folium import folium_static
@@ -69,7 +67,7 @@ def main():
         return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
 
 
-    df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data('../datasets/housing_df.csv')
+    df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data('housing_df.csv')
 
     # Connectin data to other pages        
     if 'state2' not in st.session_state:
@@ -149,7 +147,7 @@ def main():
             return merged_df
 
         # Retreiving LR model file
-        filename = '../models/model1.sav'
+        filename = 'model1.sav'
         model1 = pickle.load(open(filename, 'rb'))
 
         # Applying OHE onto user input (predictors)
