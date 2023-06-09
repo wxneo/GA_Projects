@@ -1,0 +1,11 @@
+streamlit
+pandas
+scikit-learn
+numpy
+folium
+streamlit_folium
+plotly
+numpy
+patsy
+yellowbrick
+pickle
