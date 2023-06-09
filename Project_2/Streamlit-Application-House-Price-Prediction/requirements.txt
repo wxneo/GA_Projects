@@ -7,4 +7,3 @@ streamlit_folium
 plotly
 patsy
 yellowbrick
-pickle
