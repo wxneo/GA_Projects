@@ -1,11 +1,15 @@
 # Import Libraries
 import streamlit as st
+
+# Import Libraries
+import streamlit as st
 import pandas as pd
 import numpy as np
 import folium
 from streamlit_folium import folium_static
 import plotly.express as px
 import plotly.graph_objects as go
+
 from pathlib import Path
 
 # ## Set Page configuration -------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +18,7 @@ st.title('🏠 :blue[Your House, Your Future]🔮')
 st.markdown("***Make your real estate plans with technology of the future***")
 
 
-## Preparing data ---------------------------------------------------------------------------------------------------------------------------------
+## Preparing data -----------------------------------------------------------------------------------------------------------------------------------
 
 # Using .cache_data so to reduce lag
 @st.cache_data
@@ -48,109 +52,113 @@ def get_data(filename):
 
 df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__).parent /'../housing_df.csv')
 
-## Feature 2A: EDA - Numerical predictor scatter plot ---------------------------------------------
+## Feature 2: EDA - ----------------------------------------------------------------------------------------------------------------------------------
+@st.cache_data(experimental_allow_widgets=True)
+def show_eda():
+	# Set budget
+	st.title("Past Resale Transaction Insights")
+	st.subheader("Select Budget Range")
 
-st.title("Past Resale Transaction Insights")
-st.subheader("Select Budget Range")
+	# After a user inputs a budget, only feature values with resale_price within this range will be shown
 
-# After a user inputs aa budget, only feature values with resale_price lower than this will be shown
+	# Create a range slider widget for the budget
+	budget_min, budget_max = st.slider("", int(df['resale_price'].min()), int(df['resale_price'].max()), (0, int(df['resale_price'].max())))
 
-# Create a range slider widget for the budget
-budget_min, budget_max = st.slider("", 0, 1000000, (0, 1000000))
+	# Display the selected budget range
+	st.write("Selected Budget Range:", budget_min, '-', budget_max)
 
-# Display the selected budget range
-st.write("Selected Budget Range:", budget_min, '-', budget_max)
+	# Define the range of y-values to color in red
+	y_range = [budget_min, budget_max] 
 
+	# Allow the user to select columns and values
+	selected_column = st.selectbox("Select an attribute", df_filtered.columns)
 
+	# Filter the DataFrame based on the user's selection
+	# filtered_user_df = df_filtered[selected_column]
+	filtered_user_df = pd.concat([df_filtered_cat, df[[ 'mrt_name', 'sec_sch_name']]], axis=1)
+	filtered_user_df = pd.concat([df_filtered_cat, df_filtered['resale_price']], axis=1)
 
-# Allow the user to select columns and values
-selected_column = st.selectbox("Select an attribute", df_filtered_num.columns)
-# selected_value = st.number_input("Enter a value")
+	if selected_column not in df_filtered_cat:
+		# Create a new column indicating whether each data point falls within the y-value range
+		df_filtered['color'] = np.where((df_filtered['resale_price'] >= y_range[0]) &
+		                                     (df_filtered['resale_price'] <= y_range[1]),
+		                                     'maroon', 'blue')
+		fig = px.scatter(df_filtered, x=selected_column, y="resale_price", color='color')
 
-# Filter the DataFrame based on the user's selection
-filtered_user_df = df_filtered[selected_column]
+	else:
+		# Calculate average resale prices by col
+		average_prices = filtered_user_df.groupby(selected_column)["resale_price"].mean().sort_values().reset_index()
+		filtered_prices = average_prices[
+	    (average_prices['resale_price'] >= budget_min) &
+	    (average_prices['resale_price'] <= budget_max)
+	]
 
-# Define the range of y-values to color in red
-y_range = [budget_min, budget_max]  # Customize the range based on your data
+		fig = px.bar(filtered_prices, x=selected_column, y="resale_price", color=selected_column)
 
-# Create a new column indicating whether each data point falls within the y-value range
-df_filtered['color'] = np.where((df_filtered['resale_price'] >= y_range[0]) &
-                                     (df_filtered['resale_price'] <= y_range[1]),
-                                     'maroon', 'blue')
+		fig.update_layout(width=1200, height=600, margin=dict(l=200, r=0, t=50, b=50, pad=4))
+	st.plotly_chart(fig)
 
-fig = px.scatter(df_filtered, x=selected_column, y="resale_price", color='color')
-fig.update_layout(width=1200, height=600, margin=dict(l=200, r=0, t=50, b=50, pad=4))
-st.plotly_chart(fig)
+	return budget_min, budget_max
 
-## Feature 2B: EDA - Resale prices by town Scatter plot -------------------------------------------
+budget_min, budget_max = show_eda()
 
-# Calculate average resale prices by town
-st.subheader("Categorical Features")
+## Feature 3: Map -----------------------------------------------------------------------------------------------------------------------------------------
+@st.cache_data(experimental_allow_widgets=True)
+def show_map():
+	# Get unique town values from the DataFrame
+	towns = df['town'].unique().tolist()
 
-filtered_user_df = pd.concat([df_filtered_cat, df[[ 'mrt_name', 'sec_sch_name']]], axis=1)
-selected_column = st.selectbox("Select an attribute", filtered_user_df.columns)
+	st.subheader("A closer look at each transaction")
 
+	# Create a selection widget for the town
+	selected_town = st.selectbox("Select a town", towns)
 
-filtered_user_df = pd.concat([filtered_user_df, df_filtered_num['resale_price']], axis=1)
+	# Filter the DataFrame based on the selected town
+	selected_df = df[df['town'] == selected_town]
 
+	# Get the latitude and longitude coordinates of the selected town
+	selected_lat = selected_df['latitude'].values[0]
+	selected_lon = selected_df['longitude'].values[0]
 
+	# Create a Folium map centered on the selected town
+	m = folium.Map(location=[selected_lat, selected_lon], zoom_start=14, tiles='CartoDB positron')
 
-# Calculate average resale prices by town
-average_prices = filtered_user_df.groupby(selected_column)["resale_price"].mean().sort_values().reset_index()
+	# Iterate over each row in the selected DataFrame
+	for index, row in selected_df.iterrows():
+	    # Extract the latitude and longitude values
+	    lat = row['latitude']
+	    lon = row['longitude']
 
-fig = px.bar(average_prices, x=selected_column, y="resale_price", color=selected_column)
-fig.update_layout(xaxis_title="Town", yaxis_title="Average Resale Price")
-fig.update_layout(width=1200, height=600, margin=dict(l=200, r=0 , t=50, b=50, pad=4))
+	    # Extract additional information
+	    town_name = row['town'].replace("_", " ").capitalize()
+	    address = "Blk " + row['block'].replace("_", " ").capitalize() +' ' + row['street_name'].replace("_", " ").capitalize()
+	    price = row['resale_price']
+	    info = f"Town: {town_name}<br>Address: {address}<br>Resale Price: ${price}"
 
-st.plotly_chart(fig)
+	        # Check if the resale price is within the budget range
+	    if budget_min <= price <= budget_max:
+	        # Create a marker at the latitude and longitude coordinates with red color
+	        marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250), icon=folium.Icon(color='red'))
+	    else:
+	        # Create a marker at the latitude and longitude coordinates with default color
+	        marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250))
 
-
-
-
-## Feature 3C: Map --------------------------------------------------------------------------------
-
-# Get unique town values from the DataFrame
-towns = df['town'].unique().tolist()
-
-st.subheader("A closer look at each transaction")
-
-# Create a selection widget for the town
-selected_town = st.selectbox("Select a town", towns)
-
-# Filter the DataFrame based on the selected town
-selected_df = df[df['town'] == selected_town]
-
-# Get the latitude and longitude coordinates of the selected town
-selected_lat = selected_df['latitude'].values[0]
-selected_lon = selected_df['longitude'].values[0]
-
-# Create a Folium map centered on the selected town
-m = folium.Map(location=[selected_lat, selected_lon], zoom_start=14, tiles='CartoDB positron')
-
-# Iterate over each row in the selected DataFrame
-for index, row in selected_df.iterrows():
-    # Extract the latitude and longitude values
-    lat = row['latitude']
-    lon = row['longitude']
-
-    # Extract additional information
-    town_name = row['town'].replace("_", " ").capitalize()
-    address = "Blk " + row['block'].replace("_", " ").capitalize() +' ' + row['street_name'].replace("_", " ").capitalize()
-    price = row['resale_price']
-    info = f"Town: {town_name}<br>Address: {address}<br>'Resale Price: ${price}"
-
-    # Create a marker at the latitude and longitude coordinates
-    marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250))
-    marker.add_to(m)
-
-# Display the map using Streamlit
-st.markdown("**Click on the marker to see unit information**")
-# st.markdown("Dots represent transactions")
-folium_static(m)
-fig.update_layout(width=1200, height=600, margin=dict(l=200, r=0, t=50, b=50, pad=4))
+	    # # Create a marker at the latitude and longitude coordinates
+	    # marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250))
 
 
 
+	    marker.add_to(m)
+
+	# Display the map using Streamlit
+	st.markdown("**Click on the marker to see unit information**")
+	# st.markdown("Dots represent transactions")
+	folium_static(m)
+
+show_map()
+## Feature 4: Other EDAs --------------------------------------------------------------------------------------------------------------------------------
+
+st.subheader("Want more detailed analysis?")
 
 df_floors = df[df['storey_range'].isin(['01_to_03', '04_to_06', '07_to_09', '10_to_12', '13_to_15', '16_to_18', '19_to_21', '22_to_24', '25_to_27', '28_to_30', '31_to_33',
                                                     '34_to_36', '37_to_39', '40_to_42', '43_to_45', '46_to_48', '49_to_51'])]
@@ -199,13 +207,11 @@ st.plotly_chart(fig)
 
 
 
-
-
-st.title('Premium content under construction...')
+st.title('🔧 Premium content coming your way... ')
 
 # Set title of the app
 #st.title('🏠 Page 1🔮')
-st.markdown("Please support our efforts in empowering all in their real estate journey <3")
+st.markdown("Please support our efforts in empowering all in their real estate journey ❤️")
 
 
 
