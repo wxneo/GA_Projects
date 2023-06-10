@@ -70,7 +70,7 @@ def main():
         return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
 
 
-    df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__)/'housing_df.csv')
+    df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__).parent /'housing_df.csv')
 
     # Connectin data to other pages        
     if 'state2' not in st.session_state:
@@ -151,7 +151,7 @@ def main():
 
         # Retreiving LR model file
         try:
-            with open(Path(__file__)/'model1.sav', 'rb') as file:
+            with open(Path(__file__).parent /'model1.sav', 'rb') as file:
                 model1 = pickle.load(file)
         except FileNotFoundError:
             st.error("Failed to load the model file. Make sure it exists in the current directory.")
