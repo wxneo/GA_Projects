@@ -103,7 +103,7 @@ def main():
         full_flat_type = flat_user.replace(' ', '_').lower()
 
         floor_area_sqm = st.sidebar.slider('Floor Area (sqm)', int(df_filtered['floor_area_sqm'].min()), int(df_filtered['floor_area_sqm'].max()),int(df_filtered['floor_area_sqm'].min()))
-        lease_commence_date = st.sidebar.slider('Lease Commencement Date', df_filtered['lease_commence_date'].min(), df_filtered['lease_commence_date'].max(),df_filtered['lease_commence_date'].min())
+        lease_commence_date = st.sidebar.slider('Lease Commencement Date', int(df_filtered['lease_commence_date'].min()), int(df_filtered['lease_commence_date'].max()),int(df_filtered['lease_commence_date'].min()))
 
         # Nearest Primary School
         pri_sch_user = st.sidebar.selectbox('Nearest Primary School',(sorted(user_fr_dict['pri_sch_name'])))
@@ -112,11 +112,11 @@ def main():
         st.sidebar.subheader('Distance of the nearest...')
         st.sidebar.markdown('<div style="text-align: right;">(Ref: 500 meters ≈ 6 min)</div>', unsafe_allow_html=True)
 
-        pri_sch_nearest_distance = st.sidebar.slider('Primary School',  df_filtered['pri_sch_nearest_distance'].min(), df_filtered['pri_sch_nearest_distance'].max(), df_filtered['pri_sch_nearest_distance'].min())
-        sec_sch_nearest_dist = st.sidebar.slider('Secondary School',  df_filtered['sec_sch_nearest_dist'].min(), df_filtered['sec_sch_nearest_dist'].max(), df_filtered['sec_sch_nearest_dist'].min())
-        mall_nearest_distance = st.sidebar.slider('Mall', df_filtered['mall_nearest_distance'].min(), df_filtered['mall_nearest_distance'].max(),df_filtered['mall_nearest_distance'].min())
-        hawker_nearest_distance = st.sidebar.slider('Hawker',  df_filtered['mall_nearest_distance'].min(), df_filtered['mall_nearest_distance'].max(),df_filtered['mall_nearest_distance'].min())
-        mrt_nearest_distance = st.sidebar.slider('MRT',df_filtered['mrt_nearest_distance'].min(), df_filtered['mrt_nearest_distance'].max(), df_filtered['mrt_nearest_distance'].min())
+        pri_sch_nearest_distance = st.sidebar.slider('Primary School',  float(df_filtered['pri_sch_nearest_distance'].min()), float(df_filtered['pri_sch_nearest_distance'].max()), float(df_filtered['pri_sch_nearest_distance'].min()))
+        sec_sch_nearest_dist = st.sidebar.slider('Secondary School',  float(df_filtered['sec_sch_nearest_dist'].min()), float(df_filtered['sec_sch_nearest_dist'].max()), float(df_filtered['sec_sch_nearest_dist'].min()))
+        mall_nearest_distance = st.sidebar.slider('Mall', float(df_filtered['mall_nearest_distance'].min()), float(df_filtered['mall_nearest_distance'].max()),float(df_filtered['mall_nearest_distance'].min()))
+        hawker_nearest_distance = st.sidebar.slider('Hawker',  float(df_filtered['mall_nearest_distance'].min()), float(df_filtered['mall_nearest_distance'].max()),float(df_filtered['mall_nearest_distance'].min()))
+        mrt_nearest_distance = st.sidebar.slider('MRT',float(df_filtered['mrt_nearest_distance'].min()), float(df_filtered['mrt_nearest_distance'].max()), float(df_filtered['mrt_nearest_distance'].min()))
 
         return town, floor_range, full_flat_type, floor_area_sqm, lease_commence_date, primary_school, pri_sch_nearest_distance, sec_sch_nearest_dist, mall_nearest_distance, hawker_nearest_distance, mrt_nearest_distance
 
