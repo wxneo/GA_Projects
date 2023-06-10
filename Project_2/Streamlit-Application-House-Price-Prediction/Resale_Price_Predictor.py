@@ -17,7 +17,9 @@ from yellowbrick.regressor import prediction_error
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_selection import SelectKBest
+
 import pickle
+from pathlib import Path
 
 # Used to enable df to retain its values across multiple button presses
 class SessionState:
@@ -39,6 +41,7 @@ def main():
     # Using .cache_data so to reduce lag
     @st.cache_data
     def get_data(filename):
+        
         df = pd.read_csv(filename)
 
         # Data needed for model 1
@@ -67,7 +70,7 @@ def main():
         return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
 
 
-    df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data('housing_df.csv')
+    df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__)/'housing_df.csv')
 
     # Connectin data to other pages        
     if 'state2' not in st.session_state:
@@ -148,7 +151,7 @@ def main():
 
         # Retreiving LR model file
         try:
-            with open('model1.sav', 'rb') as file:
+            with open(Path(__file__)/'model1.sav', 'rb') as file:
                 model1 = pickle.load(file)
         except FileNotFoundError:
             st.error("Failed to load the model file. Make sure it exists in the current directory.")
