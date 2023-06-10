@@ -1,8 +1,5 @@
 # Import Libraries
 import streamlit as st
-
-# Import Libraries
-import streamlit as st
 import pandas as pd
 import numpy as np
 import folium
@@ -126,29 +123,29 @@ def show_map():
 	# Iterate over each row in the selected DataFrame
 	for index, row in selected_df.iterrows():
 	    # Extract the latitude and longitude values
-	    lat = row['latitude']
-	    lon = row['longitude']
+		lat = row['latitude']
+		lon = row['longitude']
 
 	    # Extract additional information
-	    town_name = row['town'].replace("_", " ").capitalize()
-	    address = "Blk " + row['block'].replace("_", " ").capitalize() +' ' + row['street_name'].replace("_", " ").capitalize()
-	    price = row['resale_price']
-	    info = f"Town: {town_name}<br>Address: {address}<br>Resale Price: ${price}"
+		town_name = row['town'].replace("_", " ").capitalize()
+		address = "Blk " + row['block'].replace("_", " ").capitalize() +' ' + row['street_name'].replace("_", " ").capitalize()
+		price = row['resale_price']
+		info = f"Town: {town_name}<br>Address: {address}<br>Resale Price: ${price}"
 
 	        # Check if the resale price is within the budget range
-	    if budget_min <= price <= budget_max:
+		if budget_min <= price <= budget_max:
 	        # Create a marker at the latitude and longitude coordinates with red color
-	        marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250), icon=folium.Icon(color='red'))
-	    else:
+			marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250), icon=folium.Icon(color='red'))
+		else:
 	        # Create a marker at the latitude and longitude coordinates with default color
-	        marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250))
+			marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250))
 
 	    # # Create a marker at the latitude and longitude coordinates
 	    # marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250))
 
 
 
-	    marker.add_to(m)
+		marker.add_to(m)
 
 	# Display the map using Streamlit
 	st.markdown("**Click on the marker to see unit information**")
