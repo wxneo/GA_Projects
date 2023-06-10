@@ -6,6 +6,7 @@ import folium
 from streamlit_folium import folium_static
 import plotly.express as px
 import plotly.graph_objects as go
+from pathlib import Path
 
 # ## Set Page configuration -------------------------------------------------------------------------------------------------------------------------
 
@@ -45,7 +46,7 @@ def get_data(filename):
 
     return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
 
-df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data('housing_df.csv')
+df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__).parent /'housing_df.csv')
 
 ## Feature 2A: EDA - Numerical predictor scatter plot ---------------------------------------------
 
