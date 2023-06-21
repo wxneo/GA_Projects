@@ -2,7 +2,7 @@ streamlit
 pandas
 scikit-learn
 numpy
-plotly
+plotly.express
 nltk
 textblob
 vaderSentiment
