@@ -12,6 +12,7 @@ import plotly.graph_objects as go
 import re
 import string
 import nltk
+nltk.download('wordnet')
 nltk.download('stopwords')
 
 # Vectorization import
