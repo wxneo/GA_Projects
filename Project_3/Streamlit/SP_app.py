@@ -136,8 +136,8 @@ def main():
     choice = st.sidebar.selectbox("Menu", menu)
 
     # Specify the relative path to the image files
-    image_path_b99 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "image\B99_Image.jpg")
-    image_path_bbt = os.path.join(os.path.dirname(os.path.abspath(__file__)), "image\BBT_Image.jpg")
+    image_path_b99 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "image/B99_Image.jpg")
+    image_path_bbt = os.path.join(os.path.dirname(os.path.abspath(__file__)), "image/BBT_Image.jpg")
 
     # Open the images using the relative paths
     b99 = Image.open(image_path_b99)
