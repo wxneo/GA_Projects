@@ -3,6 +3,8 @@ pandas
 scikit-learn
 numpy
 plotly.express
+plotly.graph_objects
 nltk
+altair
 textblob
 vaderSentiment
