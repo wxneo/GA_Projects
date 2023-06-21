@@ -7,4 +7,4 @@ nltk
 altair
 textblob
 vaderSentiment
-PIL
+Pillow
