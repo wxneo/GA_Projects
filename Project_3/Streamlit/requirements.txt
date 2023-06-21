@@ -2,8 +2,7 @@ streamlit
 pandas
 scikit-learn
 numpy
-plotly.express
-plotly.graph_objects
+plotly
 nltk
 altair
 textblob
