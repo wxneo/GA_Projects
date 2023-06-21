@@ -12,6 +12,7 @@ import plotly.graph_objects as go
 import re
 import string
 import nltk
+nltk.download('stopwords')
 
 # Vectorization import
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
