@@ -132,7 +132,7 @@ def clean_text(text):
 
 def main():
     st.title("Project 3: Unveiling the Recipe for Comedy Success! 🎭")
-    st.subheader("Brooklyn Nine Nine :cop: or :male-technologist: Big Bang Theory")
+    st.subheader("Brooklyn Nine Nine :cop: :vs: :male-technologist: Big Bang Theory")
 
     menu = ["Home","Others"]
     choice = st.sidebar.selectbox("Menu", menu)
