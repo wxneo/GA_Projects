@@ -4,9 +4,7 @@
 ### [Brooklyn's Nine Nine and The Big Bang Theory Classifier and Sentiment Analysis](https://project-3-recipe-for-comedy-success-tj0ysfqfwsi.streamlit.app/)
 
 <br>
-
 ![Brooklyn's Nine Nine & Big Bang Theory](https://github.com/wxneo/GA_Projects/blob/main/Project_3/b99nbbt.jpg?raw=true)
-
 <br>
 
 ## Content Directory:
