@@ -18,8 +18,8 @@ st.markdown("***Make your real estate plans with technology of the future***")
 ## Preparing data -----------------------------------------------------------------------------------------------------------------------------------
 
 # Using .cache_data so to reduce lag
-@st.cache_data
-def get_data(filename):
+# @st.cache_data
+# def get_data(filename):
 #     df = pd.read_csv(filename)
 
 #     # Data needed for model 1
