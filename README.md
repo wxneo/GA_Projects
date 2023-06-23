@@ -12,6 +12,6 @@ The objective of the project is to create a product that provides HDB resale fla
 
 <br>
 
-## Project 3 - Unveiling the Recipe for Comedy Success: Analyzing Viewer Preferences and Sentiment towards Popular Sitcoms
+## Project 3 - Analyzing Viewer Preferences and Sentiment towards Popular Sitcoms
 A streaming company is seeking to optimize their limited budget by selecting and retaining the most popular and engaging sitcom for their platform. They require an efficient machine learning solution to accurately classify and analyze user comments from different platforms, specifically focusing on two famous sitcoms, "Big Bang Theory" and "Brooklyn Nine Nine." The objective is to develop an infrastructure that can effectively identify the show to which viewers' comments refer and analyze the sentiments expressed towards each show. This solution will provide valuable insights into viewers' preferences, enabling the streaming company to determine the sitcom to retain, ultimately maximizing viewer satisfaction and engagement while adhering to budget constraints.
 
