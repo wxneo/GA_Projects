@@ -131,8 +131,9 @@ def clean_text(text):
     text = [word for word in text if word not in stopwords]
     return text
 
+st.set_page_config(page_title='Viewer Sentiment Analyze', page_icon='🎭')
+
 def main():
-    st.set_page_config(page_title='Viewer Sentiment Analyze', page_icon='🎭')
     st.title("🎭Viewer Sentiment Analyzer🎭")
     st.subheader("Brooklyn Nine Nine :cop: or :male-technologist: Big Bang Theory?")
 
