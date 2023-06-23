@@ -1,6 +1,6 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Resale Housing Price Prediction
 
-### **Try out our Housing Price Predictor Streamlit App by clicking the icon below.**
+### **Try out our Housing Price Predictor Streamlit App by clicking the Streamlit icon below.**
 ### [![HDB Resale Price Predictor](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://data-nine-nine-project-2.streamlit.app/)
 ![Streamlit App](https://raw.githubusercontent.com/khammingfatt/Project-2-Your-House-Your-Future-Linear-Ridge-Lasso-Modelling/main/Streamlit%20Application.png)
 
