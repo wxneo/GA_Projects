@@ -1,11 +1,11 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Singapore Housing Data
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Resale Housing Price Prediction
 
 ### **Try out our Housing Price Predictor Streamlit App by clicking the icon below.**
 [![HDB Resale Price Predictor](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://data-nine-nine-project-2.streamlit.app/)
 ![Streamlit App](https://raw.githubusercontent.com/khammingfatt/Project-2-Your-House-Your-Future-Linear-Ridge-Lasso-Modelling/main/Streamlit%20Application.png)
 
 
-
+<br>
 
 ## Background
 In Singapore's dynamic housing market, the resale prices of public housing flats (HDB flats) are influenced by a myriad of factors including flat characteristics, nearby amenities, socio-economic variables and more. Accurate prediction of HDB flat resale prices is of significant importance to buyers, sellers, and policy-makers alike, for informed decision-making and planning.
@@ -16,7 +16,7 @@ Abstracting a dataset comprising a variety of features such as transaction year,
 
 ![PPI from URA 1990 to 2019](https://github.com/khammingfatt/Project-2-Your-House-Your-Future-Linear-Ridge-Lasso-Modelling/blob/main/housing_price_index_2019.png?raw=true)
 
-
+<br>
 
 ## Problem Statement
 We are a real estate start-up company in Singapore and we are addressing to a house buyer/seller.
