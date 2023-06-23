@@ -9,6 +9,8 @@ import plotly.graph_objects as go
 
 from pathlib import Path
 
+global df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
+
 # ## Set Page configuration -------------------------------------------------------------------------------------------------------------------------
 
 st.title('🏠 :blue[Your House, Your Future]🔮')
