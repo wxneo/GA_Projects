@@ -23,6 +23,7 @@ from textblob import TextBlob
 import altair as alt
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+
 # Plot the top 20 bar chart
 def plot_horizontal_barplot(data, title):
     data_sorted = data.sort_values(by='coefficient', ascending=False)  # Sort the data in descending order
@@ -131,6 +132,7 @@ def clean_text(text):
     return text
 
 def main():
+    st.set_page_config(page_title='Viewer Sentiment Analyze', page_icon='🎭')
     st.title("🎭Viewer Sentiment Analyzer🎭")
     st.subheader("Brooklyn Nine Nine :cop: or :male-technologist: Big Bang Theory?")
 
