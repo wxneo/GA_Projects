@@ -5,9 +5,7 @@
 
 <br>
 
-![Brooklyn's Nine Nine](https://github.com/khammingfatt/Project-3-Quantifying-TV-Laughter/blob/main/B99_Image.jpg?raw=true)
-
-<br>
+![Brooklyn's Nine Nine & Big Bang Theory](https://github.com/wxneo/GA_Projects/blob/main/Project_3/b99nbbt.jpg?raw=true)
 
 ## Content Directory:
 ### Contents:
