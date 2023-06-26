@@ -59,6 +59,7 @@ def get_data(filename):
 
 df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__).parent /'housing_df.csv')
 
+# Creating shared variable for other pages
 if 'df' not in st.session_state:
     st.session_state['df'] = df
 

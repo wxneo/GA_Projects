@@ -15,41 +15,6 @@ from pathlib import Path
 st.title('🏠 :blue[Your House, Your Future]🔮')
 st.markdown("***Make your real estate plans with technology of the future***")
 
-
-## Preparing data -----------------------------------------------------------------------------------------------------------------------------------
-
-# Using .cache_data so to reduce lag
-# @st.cache_data
-# def get_data(filename):
-#     df = pd.read_csv(filename)
-
-#     # Data needed for model 1
-#     df_filtered = st.session_state['df'][[  # Categorical data:
-#                         'town', 'storey_range', 'full_flat_type', 'pri_sch_name',  
-#                         # Numerical data:
-#                         'floor_area_sqm', 'lease_commence_date', 'mall_nearest_distance', 'hawker_nearest_distance', 'mrt_nearest_distance', 
-#                         'pri_sch_nearest_distance', 'sec_sch_nearest_dist', 'resale_price']]
-#     # Model's Numerical data only
-#     df_filtered_num = st.session_state['df'][[  'floor_area_sqm', 'lease_commence_date', 'mrt_nearest_distance', 'hawker_nearest_distance',
-#                             'mall_nearest_distance', 'pri_sch_nearest_distance', 'sec_sch_nearest_dist', 'resale_price']]
-#     # Model's Categorical data only
-#     df_filtered_cat = st.session_state['df'][['town', 'storey_range', 'full_flat_type', 'pri_sch_name']]
-
-
-#     # user_fr_dict will store the caterogrical values as a user-friendly form,
-#     # by removing '_' and capitalising first letter of each word
-#     user_fr_dict = {}
-
-#     # Iterate over each column in df_filtered_cat, get the unique values, and add to dictionary
-#     for col in df_filtered_cat.columns:
-#         unique_values = df_filtered_cat[col].unique()
-#         transformed_unique_values = [value.replace('_', ' ').title() for value in unique_values]
-#         user_fr_dict[col] = transformed_unique_values
-
-#     return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
-
-# df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__).parent /'../housing_df.csv')
-
 ## Feature 2: EDA - ----------------------------------------------------------------------------------------------------------------------------------
 @st.cache_data(experimental_allow_widgets=True)
 def show_eda():
@@ -105,6 +70,8 @@ if 'budget_min' not in st.session_state:
     
 if 'budget_max' not in st.session_state:
     st.session_state['budget_max'] = budget_max
+
+# Transferred to 3rd page...
 
 ## Feature 3: Map -----------------------------------------------------------------------------------------------------------------------------------------
 # @st.cache_data(experimental_allow_widgets=True)
