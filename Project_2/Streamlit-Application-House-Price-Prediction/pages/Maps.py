@@ -16,11 +16,45 @@ st.title('🏠 :blue[Your House, Your Future]🔮')
 st.markdown("***Make your real estate plans with technology of the future***")
 
 
+## Preparing data -----------------------------------------------------------------------------------------------------------------------------------
+
+# Using .cache_data so to reduce lag
+@st.cache_data
+def get_data(filename):
+    df = pd.read_csv(filename)
+
+    # Data needed for model 1
+    df_filtered = df[[  # Categorical data:
+                        'town', 'storey_range', 'full_flat_type', 'pri_sch_name',  
+                        # Numerical data:
+                        'floor_area_sqm', 'lease_commence_date', 'mall_nearest_distance', 'hawker_nearest_distance', 'mrt_nearest_distance', 
+                        'pri_sch_nearest_distance', 'sec_sch_nearest_dist', 'resale_price']]
+    # Model's Numerical data only
+    df_filtered_num = df[[  'floor_area_sqm', 'lease_commence_date', 'mrt_nearest_distance', 'hawker_nearest_distance',
+                            'mall_nearest_distance', 'pri_sch_nearest_distance', 'sec_sch_nearest_dist', 'resale_price']]
+    # Model's Categorical data only
+    df_filtered_cat = df[['town', 'storey_range', 'full_flat_type', 'pri_sch_name']]
+
+
+    # user_fr_dict will store the caterogrical values as a user-friendly form,
+    # by removing '_' and capitalising first letter of each word
+    user_fr_dict = {}
+
+    # Iterate over each column in df_filtered_cat, get the unique values, and add to dictionary
+    for col in df_filtered_cat.columns:
+        unique_values = df_filtered_cat[col].unique()
+        transformed_unique_values = [value.replace('_', ' ').title() for value in unique_values]
+        user_fr_dict[col] = transformed_unique_values
+
+    return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
+
+df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__).parent /'../housing_df.csv')
+
 ## Feature 3: Map -----------------------------------------------------------------------------------------------------------------------------------------
 @st.cache_data(experimental_allow_widgets=True)
 def show_map():
 	# Get unique town values from the DataFrame
-	towns = st.session_state['df']['town'].unique().tolist()
+	towns = df['town'].unique().tolist()
 
 	st.subheader("A closer look at each transaction")
 
@@ -28,7 +62,7 @@ def show_map():
 	selected_town = st.selectbox("Select a town", towns)
 
 	# Filter the DataFrame based on the selected town
-	selected_df = st.session_state['df'][st.session_state['df']['town'] == selected_town]
+	selected_df = df[df['town'] == selected_town]
 
 	# Get the latitude and longitude coordinates of the selected town
 	selected_lat = selected_df['latitude'].values[0]
@@ -72,10 +106,28 @@ def show_map():
 show_map()
 
 
+# # Create the regression plot using Plotly
+# fig = px.scatter(df_floors, x='lease_commence_date', y='resale_price', trendline='ols')
+
+# # Customize the trendline color and thickness
+# fig.update_traces(selector=dict(name='trendline'), line_color='maroon', line_width=3)
+
+# # Customize the layout
+# fig.update_layout(
+#     title='Flat Lease Commence Date vs Resale Price',
+#     xaxis_title='Lease Commence Date',
+#     yaxis_title='Resale Price (SGD)',
+# )
+
+# # Display the plot in Streamlit
+# st.plotly_chart(fig)
+
+
+
 # st.title('🔧 Premium content coming your way... ')
 
-# # # Set title of the app
-# # st.title('🏠 Page 2🔮')
+# Set title of the app
+#st.title('🏠 Page 1🔮')
 # st.markdown("Please support our efforts in empowering all in their real estate journey ❤️")
 
 

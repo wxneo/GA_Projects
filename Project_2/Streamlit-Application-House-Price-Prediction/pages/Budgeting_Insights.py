@@ -15,6 +15,41 @@ from pathlib import Path
 st.title('🏠 :blue[Your House, Your Future]🔮')
 st.markdown("***Make your real estate plans with technology of the future***")
 
+
+## Preparing data -----------------------------------------------------------------------------------------------------------------------------------
+
+# Using .cache_data so to reduce lag
+@st.cache_data
+def get_data(filename):
+    df = pd.read_csv(filename)
+
+    # Data needed for model 1
+    df_filtered = df[[  # Categorical data:
+                        'town', 'storey_range', 'full_flat_type', 'pri_sch_name',  
+                        # Numerical data:
+                        'floor_area_sqm', 'lease_commence_date', 'mall_nearest_distance', 'hawker_nearest_distance', 'mrt_nearest_distance', 
+                        'pri_sch_nearest_distance', 'sec_sch_nearest_dist', 'resale_price']]
+    # Model's Numerical data only
+    df_filtered_num = df[[  'floor_area_sqm', 'lease_commence_date', 'mrt_nearest_distance', 'hawker_nearest_distance',
+                            'mall_nearest_distance', 'pri_sch_nearest_distance', 'sec_sch_nearest_dist', 'resale_price']]
+    # Model's Categorical data only
+    df_filtered_cat = df[['town', 'storey_range', 'full_flat_type', 'pri_sch_name']]
+
+
+    # user_fr_dict will store the caterogrical values as a user-friendly form,
+    # by removing '_' and capitalising first letter of each word
+    user_fr_dict = {}
+
+    # Iterate over each column in df_filtered_cat, get the unique values, and add to dictionary
+    for col in df_filtered_cat.columns:
+        unique_values = df_filtered_cat[col].unique()
+        transformed_unique_values = [value.replace('_', ' ').title() for value in unique_values]
+        user_fr_dict[col] = transformed_unique_values
+
+    return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
+
+df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__).parent /'../housing_df.csv')
+
 ## Feature 2: EDA - ----------------------------------------------------------------------------------------------------------------------------------
 @st.cache_data(experimental_allow_widgets=True)
 def show_eda():
@@ -25,7 +60,7 @@ def show_eda():
 	# After a user inputs a budget, only feature values with resale_price within this range will be shown
 
 	# Create a range slider widget for the budget
-	budget_min, budget_max = st.slider("", int(st.session_state['df']['resale_price'].min()), int(st.session_state['df']['resale_price'].max()), (0, int(st.session_state['df']['resale_price'].max())))
+	budget_min, budget_max = st.slider("", int(df['resale_price'].min()), int(df['resale_price'].max()), (0, int(df['resale_price'].max())))
 
 	# Display the selected budget range
 	st.write("Selected Budget Range:", budget_min, '-', budget_max)
@@ -34,17 +69,17 @@ def show_eda():
 	y_range = [budget_min, budget_max] 
 
 	# Allow the user to select columns and values
-	selected_column = st.selectbox("Select an attribute", st.session_state['df_filtered'].columns)
+	selected_column = st.selectbox("Select an attribute", df_filtered.columns)
 
 	# Filter the DataFrame based on the user's selection
-	# filtered_user_df = st.session_state['df_filtered'][selected_column]
-	filtered_user_df = pd.concat([st.session_state['df_filtered_cat'], st.session_state['df'][[ 'mrt_name', 'sec_sch_name']]], axis=1)
-	filtered_user_df = pd.concat([st.session_state['df_filtered_cat'], st.session_state['df_filtered']['resale_price']], axis=1)
+	# filtered_user_df = df_filtered[selected_column]
+	filtered_user_df = pd.concat([df_filtered_cat, df[[ 'mrt_name', 'sec_sch_name']]], axis=1)
+	filtered_user_df = pd.concat([df_filtered_cat, df_filtered['resale_price']], axis=1)
 
-	if selected_column not in st.session_state['df_filtered_cat']:
+	if selected_column not in df_filtered_cat:
 		# Create a new column indicating whether each data point falls within the y-value range
-		st.session_state['df_filtered']['color'] = np.where((st.session_state['df_filtered']['resale_price'] >= y_range[0]) &
-		                                     (st.session_state['df_filtered']['resale_price'] <= y_range[1]),
+		df_filtered['color'] = np.where((df_filtered['resale_price'] >= y_range[0]) &
+		                                     (df_filtered['resale_price'] <= y_range[1]),
 		                                     'maroon', 'blue')
 		fig = px.scatter(df_filtered, x=selected_column, y="resale_price", color='color')
 
@@ -71,67 +106,11 @@ if 'budget_min' not in st.session_state:
 if 'budget_max' not in st.session_state:
     st.session_state['budget_max'] = budget_max
 
-# Transferred to 3rd page...
-
-## Feature 3: Map -----------------------------------------------------------------------------------------------------------------------------------------
-# @st.cache_data(experimental_allow_widgets=True)
-# def show_map():
-# 	# Get unique town values from the DataFrame
-# 	towns = st.session_state['df']['town'].unique().tolist()
-
-# 	st.subheader("A closer look at each transaction")
-
-# 	# Create a selection widget for the town
-# 	selected_town = st.selectbox("Select a town", towns)
-
-# 	# Filter the DataFrame based on the selected town
-# 	selected_df = st.session_state['df'][st.session_state['df']['town'] == selected_town]
-
-# 	# Get the latitude and longitude coordinates of the selected town
-# 	selected_lat = selected_df['latitude'].values[0]
-# 	selected_lon = selected_df['longitude'].values[0]
-
-# 	# Create a Folium map centered on the selected town
-# 	m = folium.Map(location=[selected_lat, selected_lon], zoom_start=14, tiles='CartoDB positron')
-
-# 	# Iterate over each row in the selected DataFrame
-# 	for index, row in selected_df.iterrows():
-# 	    # Extract the latitude and longitude values
-# 		lat = row['latitude']
-# 		lon = row['longitude']
-
-# 	    # Extract additional information
-# 		town_name = row['town'].replace("_", " ").capitalize()
-# 		address = "Blk " + row['block'].replace("_", " ").capitalize() +' ' + row['street_name'].replace("_", " ").capitalize()
-# 		price = row['resale_price']
-# 		info = f"Town: {town_name}<br>Address: {address}<br>Resale Price: ${price}"
-
-# 	        # Check if the resale price is within the budget range
-# 		if budget_min <= price <= budget_max:
-# 	        # Create a marker at the latitude and longitude coordinates with red color
-# 			marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250), icon=folium.Icon(color='red'))
-# 		else:
-# 	        # Create a marker at the latitude and longitude coordinates with default color
-# 			marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250))
-
-# 	    # # Create a marker at the latitude and longitude coordinates
-# 	    # marker = folium.Marker([lat, lon], popup=folium.Popup(info, max_width=250))
-
-
-
-# 		marker.add_to(m)
-
-# 	# Display the map using Streamlit
-# 	st.markdown("**Click on the marker to see unit information**")
-# 	# st.markdown("Dots represent transactions")
-# 	folium_static(m)
-
-# show_map()
 ## Feature 4: Other EDAs --------------------------------------------------------------------------------------------------------------------------------
 
 st.subheader("Want more detailed analysis?")
 
-df_floors = st.session_state['df'][st.session_state['df']['storey_range'].isin(['01_to_03', '04_to_06', '07_to_09', '10_to_12', '13_to_15', '16_to_18', '19_to_21', '22_to_24', '25_to_27', '28_to_30', '31_to_33',
+df_floors = df[df['storey_range'].isin(['01_to_03', '04_to_06', '07_to_09', '10_to_12', '13_to_15', '16_to_18', '19_to_21', '22_to_24', '25_to_27', '28_to_30', '31_to_33',
                                                     '34_to_36', '37_to_39', '40_to_42', '43_to_45', '46_to_48', '49_to_51'])]
 
 df_floors['storey_range'] = df_floors['storey_range'].str.replace('_', ' ')
@@ -180,8 +159,8 @@ st.plotly_chart(fig)
 
 # st.title('🔧 Premium content coming your way... ')
 
-# # Set title of the app
-# st.title('🏠 Page 1🔮')
+# Set title of the app
+#st.title('🏠 Page 1🔮')
 # st.markdown("Please support our efforts in empowering all in their real estate journey ❤️")
 
 

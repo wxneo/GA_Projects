@@ -11,6 +11,8 @@ import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression, LassoCV, RidgeCV
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import mean_squared_error, r2_score
+from patsy import dmatrices, dmatrix
+from yellowbrick.regressor import prediction_error
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_selection import SelectKBest
@@ -18,12 +20,15 @@ import pickle
 
 from pathlib import Path
 
+global df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
+
 ## Set Page configuration ------------------------------------------------------------------------------------------------------------------------
 
 st.set_page_config(page_title='Predict Housing Prices', page_icon='🏠', layout='wide', initial_sidebar_state='expanded')
 # Set title of the app
 st.title('🏠 :blue[Your House, Your Future]🔮')
 st.markdown("***Make your real estate plans with technology of the future***")
+
 
 ## Preparing data ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -58,22 +63,6 @@ def get_data(filename):
     return df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict
 
 df, df_filtered, df_filtered_num, df_filtered_cat, user_fr_dict = get_data(Path(__file__).parent /'housing_df.csv')
-
-# Creating shared variable for other pages
-if 'df' not in st.session_state:
-    st.session_state['df'] = df
-
-if 'df_filtered' not in st.session_state:
-    st.session_state['df_filtered'] = df_filtered
-
-if 'df_filtered_num' not in st.session_state:
-    st.session_state['df_filtered_num'] = df_filtered_num
-
-if 'df_filtered_cat' not in st.session_state:
-    st.session_state['df_filtered_cat'] = df_filtered_cat
-
-if 'user_fr_dict' not in st.session_state:
-    st.session_state['user_fr_dict'] = user_fr_dict
 
 ## Feature 1: Price Predictor --------------------------------------------------------------------------------------------------------------------
 
