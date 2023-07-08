@@ -11,8 +11,6 @@ import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression, LassoCV, RidgeCV
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import mean_squared_error, r2_score
-from patsy import dmatrices, dmatrix
-from yellowbrick.regressor import prediction_error
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_selection import SelectKBest
