@@ -2,9 +2,10 @@
 
 ### **Click on the Streamlit icon to try our B99 vs BBT Viewer Sentiment Analyzer!**
 ### [![Viewer Sentiment Analyzer](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://viewer-sentiment-d99.streamlit.app/)
+![streamlit](https://github.com/wxneo/GA_Projects/blob/main/Project_3/image/Viewer_Sentiment_screenshot.png)
 <br>
 
-![Brooklyn's Nine Nine & Big Bang Theory](https://github.com/wxneo/GA_Projects/blob/main/Project_3/b99nbbt.jpg?raw=true)
+![Brooklyn's Nine Nine & Big Bang Theory](https://github.com/wxneo/GA_Projects/blob/main/Project_3/image/b99nbbt.jpg)
 
 ## Content Directory:
 ### Contents:
