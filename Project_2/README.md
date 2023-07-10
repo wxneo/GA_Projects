@@ -2,7 +2,7 @@
 
 ### **Try out our Housing Price Predictor Streamlit App by clicking the Streamlit icon below.**
 ### [![HDB Resale Price Predictor](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hdb-resale-price-predictor-d99.streamlit.app/)
-![Streamlit App](https://raw.githubusercontent.com/khammingfatt/Project-2-Your-House-Your-Future-Linear-Ridge-Lasso-Modelling/main/Streamlit%20Application.png)
+![Streamlit App](https://github.com/wxneo/GA_Projects/blob/main/Project_2/image/housing_predictor_screenshot.png)
 
 
 <br>
