@@ -1,7 +1,7 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 3: Unveiling the Recipe for Comedy Success: Analyzing Viewer Preferences and Sentiment towards Popular Sitcoms
 
 ### **Click on the Streamlit icon to try our B99 vs BBT Viewer Sentiment Analyzer!**
-### [![Viewer Sentiment Analyzer](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://data-nine-nine-project-3.streamlit.app/)
+### [![Viewer Sentiment Analyzer](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://viewer-sentiment-d99.streamlit.app/)
 <br>
 
 ![Brooklyn's Nine Nine & Big Bang Theory](https://github.com/wxneo/GA_Projects/blob/main/Project_3/b99nbbt.jpg?raw=true)
