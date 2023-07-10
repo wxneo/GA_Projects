@@ -2,7 +2,7 @@
 
 ### **Try Out our West Nile Virus Streamlit Application by clicking the streamlit icon below!**
 ### [![West Nile Virus Interactive EDA and Predictor](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://west-nile-virus-dashboard-d99.streamlit.app/)
-
+![streamlit](https://github.com/wxneo/GA_Projects/blob/main/Project_4/images/WNV_screenshot.png)
 <br>
 
 | **Concerning Numbers** | **Social Cost per Hospitalised Person**  |
