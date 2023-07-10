@@ -7,7 +7,7 @@
 
 | **Concerning Numbers** | **Social Cost per Hospitalised Person**  |
 | ------------------------ | -----------------------  |
-|![Concerning Numbers](image-5.png) | ![Social Cost Per Person](image-6.png) |
+|![Concerning Numbers](https://github.com/wxneo/GA_Projects/blob/main/Project_4/images/Concerning_Numbers.jpg) | ![Social Cost Per Person](https://github.com/wxneo/GA_Projects/blob/main/Project_4/images/Social_Cost_Loss_per_Person.jpg) |
 
 <br>
 
