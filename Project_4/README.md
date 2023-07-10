@@ -141,7 +141,7 @@ Public health workers in Chicago setup mosquito traps scattered across the city.
 <br>
 
 ## Data Preprocessing
-![Data Preprocessing](image-1.png)
+![Data Preprocessing](https://github.com/wxneo/GA_Projects/blob/main/Project_4/images/Data_Preprocessing.jpg)
 
 We followed a rigorous data preprocessing pipeline consisting of three key steps. Firstly, we employed the **One Hot Encoder** technique to convert categorical data into **numerical format**, ensuring compatibility with our models. This transformation allowed us to effectively capture the information contained within the categorical variables.
 
@@ -151,7 +151,7 @@ In the final step of data preprocessing, we utilized the **Standard Scaler** met
 
 ## Modeling
 
-![Modeling](image-2.png)
+![Modeling](https://github.com/wxneo/GA_Projects/blob/main/Project_4/images/Model_Workflow.jpg)
 
 Following the data preprocessing stage, the preprocessed dataset was fed into a pipeline of five classification models: **logistic regression, random forest classifier, XGBoost, Adaboost, and Voting Classifier**. These models were carefully chosen based on their respective strengths and suitability for the classification task at hand. The use of multiple models allowed us to leverage their individual capabilities and ensemble them to make more robust predictions.
 
@@ -185,13 +185,13 @@ By employing this systematic approach, we aimed to enhance the quality and relia
 
 ## Key Recommendations
 
-![Potential Cost Reduction](image.png)
+![Potential Cost Reduction](https://github.com/wxneo/GA_Projects/blob/main/Project_4/images/Potential_Cost_Reduction.jpg)
 
 Leveraging the power of machine learning, we have developed an advanced predictive model to effectively combat the West Nile Virus. This innovative approach enables us to significantly reduce costs by an impressive 78.5%. We invite you to delve into the comprehensive details of our proposal outlined below, which showcase the technical prowess and formal methodologies employed in our solution.
 
 | **Proposal** | **Proposal Evaluation**  |
 | ------------------------ | -----------------------  |
-|![Alt text](image-3.png)|![Alt text](image-4.png) |
+|![Alt text](https://github.com/wxneo/GA_Projects/blob/main/Project_4/images/Proprosal.jpg)|![Alt text](https://github.com/wxneo/GA_Projects/blob/main/Project_4/images/Evaluation_of_Proposal.jpg) |
 
 <br>
 
