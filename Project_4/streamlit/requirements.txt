@@ -1,0 +1,10 @@
+streamlit
+pandas
+folium
+streamlit_folium
+Pillow
+plotly.express
+numpy
+datetime
+imblearn
+scikit-learn==1.2.1
