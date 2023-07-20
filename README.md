@@ -3,15 +3,34 @@
 <br>
 
 ## Project 1 - 	Data Analysis of Singapore Rainfall
-This project aims to conduct an analysis of weather patterns in Singapore by utilizing historical weather data. The primary goal is to identify and uncover significant insights regarding the distribution of rainfall, enabling the generation of informed recommendations for planning purposes.
+* Conducted weather pattern analysis in Singapore using historical weather data.
+* Goal: Identify significant insights on rainfall distribution for informed planning recommendations.
 
 <br>
 
 ## Project 2 - Resale Housing Price Prediction
-The objective of the project is to create a product that provides HDB resale flat prices prediction and uncover determining factors that are affecting the price. The envisioned solution aims to offer the general public predicted pricing for HDB resale flats and address common real estate inquiries. This includes assisting users in exploring available options within their budget, identifying affordable flat types and locations as potential buyers, advising on appropriate pricing strategies for sellers, and providing insights on effective marketing techniques to enhance the selling price of their flats.
+* Developed a product for HDB resale flat price prediction and determining factors analysis.
+* Objective: Provide the general public with predicted pricing and address real estate inquiries.
+* Assisted users in exploring options within their budget, identifying affordable flat types and locations.
+* Advised sellers on appropriate pricing strategies and offered insights on effective marketing techniques to enhance selling prices.
 
 <br>
 
 ## Project 3 - Analyzing Viewer Preferences and Sentiment towards Popular Sitcoms
-A streaming company is seeking to optimize their limited budget by selecting and retaining the most popular and engaging sitcom for their platform. They require an efficient machine learning solution to accurately classify and analyze user comments from different platforms, specifically focusing on two famous sitcoms, "Big Bang Theory" and "Brooklyn Nine Nine." The objective is to develop an infrastructure that can effectively identify the show to which viewers' comments refer and analyze the sentiments expressed towards each show. This solution will provide valuable insights into viewers' preferences, enabling the streaming company to determine the sitcom to retain, ultimately maximizing viewer satisfaction and engagement while adhering to budget constraints.
+* Developed an efficient machine learning solution for a streaming company to optimize their limited budget by selecting and retaining the most popular sitcom for their platform.
+* Focused on classifying and analyzing user comments from different platforms, specifically targeting "Big Bang Theory" and "Brooklyn Nine Nine" sitcoms.
+* Objective: Create an infrastructure to accurately identify the show referenced in viewers' comments and analyze sentiments expressed towards each show.
+* Solution provides valuable insights into viewers' preferences, aiding the streaming company in determining the sitcom to retain, maximizing viewer satisfaction and engagement within budget constraints.
+
+
+<br>
+
+## Project 4 - Data-backed solutions for combating West Nile Virus in Chicago
+* Collaborated with the CDC as a third-party consulting firm, Data Nine-Nine, to review their West Nile virus (WNV) control efforts.
+* Objective: Build a machine learning model to predict the presence of WNV and provide valuable insights and recommendations for enhancing outbreak combat strategies.
+* WNV is an infectious viral disease transmitted by mosquitoes, posing significant health risks to humans.
+* In 2002, initial human cases were reported in Chicago, leading to the establishment of a comprehensive surveillance and control program by the City of Chicago and the Chicago Department of Public Health (CDPH).
+* Our engagement remains focused on reviewing and enhancing the existing program to combat WNV effectively.
+
+
 
