@@ -1,4 +1,4 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Resale Housing Price Prediction
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Singapore Resale Housing Price Prediction
 
 ### **Try out our Housing Price Predictor Streamlit App by clicking the Streamlit icon below.**
 ### [![HDB Resale Price Predictor](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hdb-resale-price-predictor-d99.streamlit.app/)
