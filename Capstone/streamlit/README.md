@@ -1,0 +1,1 @@
+This prototype application uses object detection Deep Learning model (YOLOv8 by RoboFlow) to detect people, count the crowd size and provide early warning system to mitigate the risk of crowd crushing.
