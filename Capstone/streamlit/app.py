@@ -11,14 +11,14 @@ import helper
 
 # Setting page layout
 st.set_page_config(
-    page_title="Crowd Detection & Early Warning System",
+    page_title="CrowdSenseAI",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
 )   
 
 # Main page heading
-st.title("Crowd Detection & Early Warning System")
+st.title("CrowdSenseAI: Detection & Early Warning System")
 
 # Sidebar
 st.sidebar.header("🤖 ML Model Config")
