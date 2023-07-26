@@ -3,5 +3,5 @@ pandas
 numpy
 ultralytics
 opencv-python
-opencv-contrib-python
+pyopengl
 supervision==0.2.0
