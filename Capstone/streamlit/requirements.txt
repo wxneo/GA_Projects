@@ -2,6 +2,6 @@ streamlit
 pandas
 numpy
 ultralytics
-opencv-python-headless
+opencv-python
 PyOpenGL
 supervision==0.2.0
