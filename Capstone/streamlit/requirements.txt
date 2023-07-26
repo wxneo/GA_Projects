@@ -3,4 +3,5 @@ pandas
 numpy
 ultralytics
 opencv-python
+opencv-contrib-python
 supervision==0.2.0
