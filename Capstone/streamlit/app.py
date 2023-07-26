@@ -8,6 +8,9 @@ import streamlit as st
 # Local Modules
 import settings
 import helper
+import os
+
+os.environ["PYOPENGL_PLATFORM"] = "egl"
 
 # Setting page layout
 st.set_page_config(
