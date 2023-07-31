@@ -18,14 +18,10 @@ st.set_page_config(
 )   
 
 # Main page heading
-st.title("CrowdSenseAI: Detection & Early Warning System")
+st.title("CrowdSenseAI: Crowd Detection & Early Warning System")
 
 # Sidebar
 st.sidebar.header("🤖 ML Model Config")
-
-# # Model Options
-# model_type = st.sidebar.radio(
-#     "Select Task", ['Detection', 'Segmentation'])
 
 confidence = float(st.sidebar.slider(
     "Select Model Confidence", 20, 100, 40)) / 100
@@ -49,7 +45,7 @@ source_radio = st.sidebar.radio(
 if source_radio != settings.IMAGE:
     st_frame_warning_header.header("🚨 Warning Threshold")
     alert_level = st_frame_warning_slider.slider(
-    "Alert Level", 100, 1000, 400)
+    "Alert Level", 10, 1000, 400)
                       
 source_img = None
 # If image is selected
