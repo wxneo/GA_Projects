@@ -2,6 +2,15 @@
 
 <br>
 
+## Capstone Project - CrowdSenseAI: Avert Crowd Crushing with Deep Learning
+* **Objective:** Improve crowd safety during public gatherings and events.
+* **Problem:** Prevent crowd crushing disasters due to overcrowding and mismanagement.
+* **Solution:** Develop an advanced deep learning model for real-time crowd presence detection.
+* **Key Features:** Estimate crowd capacity, trigger early warnings to authorities in hazardous conditions.
+* **Impact:** Mitigate the risk of crowd incident, enhancing public safety during gatherings.
+
+<br>
+
 ## Project 1 - 	Data Analysis of Singapore Rainfall
 * Conducted weather pattern analysis in Singapore using historical weather data.
 * Goal: Identify significant insights on rainfall distribution for informed planning recommendations.
