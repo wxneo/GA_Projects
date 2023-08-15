@@ -4,7 +4,7 @@
 
 ## Capstone Project - CrowdSenseAI: Avert Crowd Crushing with Deep Learning
 * **Objective:** Improve crowd safety during public gatherings and events.
-* **Problem:** Prevent crowd crushing disasters due to overcrowding and mismanagement.
+* **Problem:** Prevent crowd crushing disasters due to overcrowding and mismanagement of spaces.
 * **Solution:** Develop an advanced deep learning model for real-time crowd presence detection.
 * **Key Features:** Estimate crowd capacity, trigger early warnings to authorities in hazardous conditions.
 * **Impact:** Mitigate the risk of crowd incident, enhancing public safety during gatherings.
@@ -29,7 +29,7 @@
 * Developed an efficient machine learning solution for a streaming company to optimize their limited budget by selecting and retaining the most popular sitcom for their platform.
 * Focused on classifying and analyzing user comments from different platforms, specifically targeting "Big Bang Theory" and "Brooklyn Nine Nine" sitcoms.
 * Objective: Create an infrastructure to accurately identify the show referenced in viewers' comments and analyze sentiments expressed towards each show.
-* Solution provides valuable insights into viewers' preferences, aiding the streaming company in determining the sitcom to retain, maximizing viewer satisfaction and engagement within budget constraints.
+* Solution provides valuable insights into viewers' preferences, aiding the streaming company in determining the show elements in the sitcoms that are popular among the viewers and maximizing viewer satisfaction and engagement.
 
 
 <br>

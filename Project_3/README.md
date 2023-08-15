@@ -35,7 +35,7 @@ The competition among these major players reflects the growing demand for on-dem
 
 
 ## Problem Statement
-Netflix aims to optimize their limited budget by retaining the most popular and engaging sitcom for their platform. To make an informed decision, they require an efficient machine learning solution that can accurately classify and analyze user comments from various platforms, paricularly two famous sitcom "Big Bang Theory" and "Brooklyn Nine Nine." The goal is to develop an infrastructure that can effectively identify which show the viewers' comments are referring to and analyze the sentiments expressed towards each show. This solution will enable the streaming company to gain valuable insights into viewers' preferences, aiding them in determining the sitcom to retain, maximizing viewer satisfaction and engagement within the budgetary constraints.
+Netflix aims to optimize their limited budget by retaining the most popular and engaging sitcom for their platform. To make an informed decision, they require an efficient machine learning solution that can accurately classify and analyze user comments from various platforms, paricularly two famous sitcom "Big Bang Theory" and "Brooklyn Nine Nine." The goal is to develop an infrastructure that can effectively identify which show the viewers' comments are referring to and analyze the sentiments expressed towards each show. This solution will enable the streaming company to gain valuable insights into viewers' preferences, aiding them in determining the show elements in the sitcoms that are popular among the viewers and maximizing viewer satisfaction and engagement.
 
 	(1) Identify what show elements in the sitcom are popular among the viewers
 
