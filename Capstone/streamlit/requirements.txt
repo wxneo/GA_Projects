@@ -4,6 +4,6 @@ streamlit
 pandas
 numpy
 supervision
-opencv-python
+opencv-python-headless==4.5.4.60
 PyOpenGL
 PyOpenGL_accelerate
