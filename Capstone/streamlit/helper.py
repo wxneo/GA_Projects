@@ -1,10 +1,41 @@
 from ultralytics import YOLO
 import supervision as sv
 import streamlit as st
+import cv2
 import base64
+import queue
+import threading
+import time
 
 # Local Modules
 import settings
+
+# bufferless VideoCapture
+class VideoCapture:
+
+    def __init__(self, name):
+        self.cap = cv2.VideoCapture(name)
+        self.q = queue.Queue()
+        t = threading.Thread(target=self._reader)
+        t.daemon = True
+        t.start()
+
+    # read frames as soon as they are available, keeping only the most recent one
+    def _reader(self):
+        while True:
+            ret, frame = self.cap.read()
+            if not ret:
+                break
+            if not self.q.empty():
+                try:
+                    self.q.get_nowait()  # discard previous (unprocessed) frame
+                except queue.Empty:
+                    pass
+            self.q.put((ret, frame))
+
+    def read(self):
+        ret, frame = self.q.get()
+        return ret, frame
 
 def load_model(model_path):
     """
@@ -120,20 +151,37 @@ def play_rtsp_stream(conf, model, alert_level):
     with col1:
         if st.sidebar.button('Detect Objects'):
             try:
-
                 st_frame_1 = st.empty()
                 st_frame_4 = st.empty()
                 st_frame_list = [st_frame_1, st_frame_2, st_frame_3, st_frame_4, st_frame_warning]
                 max_count=0
-                for results in model.track(source=source_rtsp, conf=conf, stream=True, vid_stride=5): 
-                    # calls Yolov8 model tracking method to make detections at the 5th frame interval
-                    frame = results.orig_img
-                    max_count = display_detected_frames(results, 
-                                                        st_frame_list, 
-                                                        frame, 
-                                                        is_display_tracker, 
-                                                        alert_level,
-                                                        max_count)
+                vid_cap = VideoCapture(source_rtsp)
+
+                while True:
+                    time.sleep(0.5)  # simulate time between events
+                    success, frame = vid_cap.read()  # Capture frame from VideoCapture
+                    results = model(frame, conf=conf)[0]
+                    if success:  # Check if frame is valid
+                        max_count = display_detected_frames(results, 
+                                                            st_frame_list, 
+                                                            frame, 
+                                                            is_display_tracker, 
+                                                            alert_level,
+                                                            max_count)
+                    else:
+                        break
+
+
+
+                # for results in model.track(source=source_rtsp, conf=conf, stream=True, vid_stride=5): 
+                #     # calls Yolov8 model tracking method to make detections at the 5th frame interval
+                #     frame = results.orig_img
+                #     max_count = display_detected_frames(results, 
+                #                                         st_frame_list, 
+                #                                         frame, 
+                #                                         is_display_tracker, 
+                #                                         alert_level,
+                #                                         max_count)
             except Exception as e:
                 st.sidebar.error("Error loading video: " + str(e))
 

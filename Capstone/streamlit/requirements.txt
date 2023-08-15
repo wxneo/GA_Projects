@@ -1,6 +1,7 @@
-torch==2.0.1
-ultralytics==8.0.142
-streamlit==1.25.0
+torch
+ultralytics
+streamlit
 pandas
 numpy
 supervision
+opencv-python-headless
