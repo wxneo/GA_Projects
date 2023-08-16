@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from PIL import Image
 import os
 
@@ -6,10 +7,8 @@ def load_file(filepath):
     current_directory = os.getcwd()
     
     file_path_concat = os.path.join(current_directory, filepath)
-    train_df = pd.read_csv(file_path_concat)
-    
-    pd.read_csv(filepath)
-    return pd.read_csv(filepath)
+  
+    return pd.read_csv(file_path_concat)
 
 ## Set Page configuration ------------------------------------------------------------------------------------------------------------------------
 
