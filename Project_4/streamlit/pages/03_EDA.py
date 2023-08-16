@@ -1,18 +1,20 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import os
 
 st.set_page_config(page_title="West Nile Virus Dashboard", page_icon='🦟', layout="wide")
 
 # https://plotly.com/python/mapbox-density-heatmaps/
 
 # Load the train dataset
-@st.cache_data
+@st.cache_data    
 def load_file(filepath):
-    pd.read_csv(filepath)
-    return pd.read_csv(filepath)
+    actual_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), filepath)
+    df = pd.read_csv(actual_filepath)
+    return df
 
-df = load_file("./streamlit/data/train_merge_df.csv")
+df = load_file("/data/train_merge_df.csv")
 
 # st.sidebar.title('Data NineNine West Nile Virus')
 # st.sidebar.write('Graph of Monthly total number of mosquitoes caught by year')

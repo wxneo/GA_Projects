@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import folium
+import os
 from streamlit_folium import folium_static
 
 st.set_page_config(page_title="West Nile Virus Dashboard", page_icon='🦟')
@@ -11,14 +12,15 @@ st.markdown("***Map showing weather stations locations, trap locations, number o
 # Load the train dataset
 @st.cache_data    
 def load_file(filepath):
-    pd.read_csv(filepath)
-    return pd.read_csv(filepath)
+    actual_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), filepath)
+    df = pd.read_csv(actual_filepath)
+    return df
 
-df = load_file("./assets/train.csv")
+df = load_file("../assets/train.csv")
 
 # Load the spray dataset
 
-spray_df = load_file("./assets/spray.csv")
+spray_df = load_file("../assets/spray.csv")
 
 # Convert date columns to datetime
 df['Date'] = pd.to_datetime(df['Date'])

@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import datetime
-import imblearn
+import os
 
 #from wnv_historical_data_viz import df (NOT NEEDED)
 
@@ -19,8 +19,9 @@ st.write("-- Data Nine Nine Project 4")
 st.markdown("***Keep yourself safe by predicting the presence of West Nile Virus at a chosen address***")
 
 @st.cache_data
-def get_data(filename):
-    df = pd.read_csv(filename)
+def get_data(filepath):
+    actual_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), filepath)
+    df = pd.read_csv(actual_filepath)
 
     # Data needed for model 1
     df_filtered = df[[  # Categorical data:
@@ -44,7 +45,7 @@ def get_data(filename):
 
     return df, df_filtered, df_filtered_num, df_filtered_cat
 
-df, df_filtered, df_filtered_num, df_filtered_cat = get_data('./streamlit/data/train_merge_df.csv')
+df, df_filtered, df_filtered_num, df_filtered_cat = get_data('/data/train_merge_df.csv')
 
 
 def get_predictors():
