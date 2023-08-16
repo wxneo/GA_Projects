@@ -15,10 +15,10 @@ def load_file(filepath):
     current_directory = os.getcwd()
     
     file_path_concat = os.path.join(current_directory, filepath)
-    train_df = pd.read_csv(file_path_concat)
+    # train_df = pd.read_csv(file_path_concat)
     
-    pd.read_csv(filepath)
-    return pd.read_csv(filepath)
+    # pd.read_csv(filepath)
+    return pd.read_csv(file_path_concat)
 
 df = load_file("../assets/train.csv")
 
