@@ -17,14 +17,14 @@ st.title('🎯 Are you at risk?')
 st.write("-- Data Nine Nine Project 4")
 
 st.markdown("***Keep yourself safe by predicting the presence of West Nile Virus at a chosen address***")
-st.markdown("***Note: your address must exist within our database for the prediction to work!***")
+
 @st.cache_data
 def get_data(filename):
     df = pd.read_csv(filename)
 
     # Data needed for model 1
     df_filtered = df[[  # Categorical data:
-                        'species', 'street', 'trap',  
+                        'species', 'street', 'trap', 'address_number_and_street', 
                         # Numerical data:
                         'block', 'latitude', 'longitude',
     'year', 'month', 'day', 'stat_1_tmax', 'stat_1_tmin', 'stat_1_tavg',
@@ -44,7 +44,7 @@ def get_data(filename):
 
     return df, df_filtered, df_filtered_num, df_filtered_cat
 
-df, df_filtered, df_filtered_num, df_filtered_cat = get_data('data/train_merge_df.csv')
+df, df_filtered, df_filtered_num, df_filtered_cat = get_data('./streamlit/data/train_merge_df.csv')
 
 
 def get_predictors():
@@ -57,16 +57,18 @@ def get_predictors():
     
 
     # User input
-    street = st.sidebar.selectbox('Street', sorted(df_filtered['street'].unique()), index=0) # index is the default
-    block = st.sidebar.slider('Block Number', float(df_filtered['block'].min()), float(df_filtered['block'].max()), step=1.0, value=70.0) # value is the default
+    address = st.sidebar.selectbox('Address', sorted(df_filtered['address_number_and_street'].unique()), index=0)
+    
 
-    #Get latitude and longitude from dataframe based on user input for street and block
-    filtered_df = df[(df['block']==block) & (df['street']==street)]
+    #Get latitude and longitude, street and block from dataframe based on user input for address
+    filtered_df = df[df['address_number_and_street']==address]
     if len(filtered_df) > 0:
         latitude = filtered_df['latitude'].mean()
         longitude = filtered_df['longitude'].mean()
-    else:
-        st.error('Did you input the correct address?')
+        # Access street name for first row 
+        street = filtered_df['street'].iloc[0]
+        block = filtered_df['block'].mean()
+
 
     # latitude = st.sidebar.slider('Latitude',  float(df_filtered['latitude'].min()), float(df_filtered['latitude'].max()), float(df_filtered['latitude'].min()), key='3')
     # longitude = st.sidebar.slider('Longitude', float(df_filtered['longitude'].min()), float(df_filtered['longitude'].max()),float(df_filtered['longitude'].min()), key='4')
@@ -128,7 +130,7 @@ predictors_df = get_predictors()
 def wnv_predictor(predictors_df):
 
     #st.write(predictors_df)
-    filename = 'models/ada_model.pkl'
+    filename = './streamlit/models/ada_model.pkl'
     model1 = pickle.load(open(filename, 'rb'))
 
     # Generate prediction based on user selected attributes
