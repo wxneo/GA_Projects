@@ -45,7 +45,7 @@ def get_data(filepath):
 
     return df, df_filtered, df_filtered_num, df_filtered_cat
 
-df, df_filtered, df_filtered_num, df_filtered_cat = get_data('data/train_merge_df.csv')
+df, df_filtered, df_filtered_num, df_filtered_cat = get_data('../data/train_merge_df.csv')
 
 
 def get_predictors():
@@ -131,7 +131,7 @@ predictors_df = get_predictors()
 def wnv_predictor(predictors_df):
 
     #st.write(predictors_df)
-    filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models/ada_model.pkl')
+    filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../models/ada_model.pkl')
     model1 = pickle.load(open(filename, 'rb'))
 
     # Generate prediction based on user selected attributes
