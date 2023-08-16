@@ -9,11 +9,10 @@ st.set_page_config(page_title="West Nile Virus Dashboard", page_icon='🦟', lay
 # Load the train dataset
 @st.cache_data
 def load_file(filepath):
-    current_directory = os.getcwd()
-    file_path_concat = os.path.join(current_directory, filepath)
-    return pd.read_csv(file_path_concat)
+    pd.read_csv(filepath)
+    return pd.read_csv(filepath)
 
-df = load_file("data/train_merge_df.csv")
+df = load_file("./streamlit/data/train_merge_df.csv")
 
 # st.sidebar.title('Data NineNine West Nile Virus')
 # st.sidebar.write('Graph of Monthly total number of mosquitoes caught by year')
