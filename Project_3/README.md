@@ -54,7 +54,7 @@ Netflix aims to optimize their limited budget by retaining the most popular and 
 <br>
 
 ### Brief Description of Our Data Exploration
-Upon studying the datasets, we found out that these are the most important 10 factors that affects the housing price are given as below. Starting from the most important factor, we have floor area per square feet, max floor level and lease commence date.
+Upon studying the datasets, we found out that these are the most important 20 factors that affects the predictions are as shown.
  
 ![SHAP Importance of Variables](https://github.com/khammingfatt/Project-3-Quantifying-TV-Laughter/blob/main/SHAP.png?raw=true)
 <br>
