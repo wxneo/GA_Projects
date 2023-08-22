@@ -1,6 +1,6 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) CrowdSenseAI: Avert Crowd Crushing with Deep Learning
 
-
+![Streamlit App](https://github.com/wxneo/GA_Projects/blob/main/Capstone/image/capstone_demo_short02.gif)
 
 ## Background
 In today's world, public gatherings and events draw enormous crowds, making crowd safety a paramount concern. Crowd forces can escalate to levels beyond control, leading to tragic incidents of compressive asphyxia, where individuals are crushed due to excessive pressure. Tragically, media sensationalism often misrepresents the true causes of crowd disasters, attributing them to "panic" and "stampede," when in reality, inappropriate utilization of space and systematic failures in design and management are the real reason behind most cases. The stark reality is that major incidents arise from crowd compressive forces, not mere trampling.
